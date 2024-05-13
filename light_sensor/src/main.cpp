@@ -1,11 +1,8 @@
 #include <Arduino.h>
-int ldr_pin = 7;
-int led_pin = 13;
-
+int analogpin;
 
 void setup() {
-  pinMode(ldr_pin, INPUT);
-  pinMode(led_pin, OUTPUT);
+  pinMode(A3, INPUT);
   Serial.begin(9600);
   while (!Serial)
   {
@@ -14,15 +11,8 @@ void setup() {
 }
 
 void loop() {
-  if (digitalRead(ldr_pin) == 1)
-  {
-    digitalWrite(led_pin, HIGH);
-  }
-  else
-  {
-    digitalWrite(led_pin, LOW);
-  }
-
-  Serial.println(digitalRead(ldr_pin));
-  // delay(100);
+  analogpin = analogRead(A3);
+  Serial.print("light value: ");
+  Serial.println(analogpin);
+  delay(5000);
 }
